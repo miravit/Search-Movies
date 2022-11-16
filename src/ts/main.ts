@@ -4,6 +4,7 @@ import { searchMovies } from "./services/movieService";
 (document.getElementById("searchForm") as HTMLFormElement).addEventListener(
   "submit",
   async (e: Event) => {
+    //I min klickhändelse när jag submittar så anropas en asyncfunktion. e är ett inbyggt objekt som har alla
     e.preventDefault();
 
     let searchText: string = (
