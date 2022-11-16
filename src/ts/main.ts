@@ -4,9 +4,9 @@ import { movieSearch } from "./services/movieService";
 (document.getElementById("searchForm") as HTMLFormElement).addEventListener(
   "submit",
   async (e: Event) => {
-    //I min klickhändelse när jag submittar så anropas en asyncfunktion. e är ett inbyggt objekt som har alla
+    //I min klickhändelse när jag submittar så anropas en asyncfunktion. e är ett inbyggt objekt som har alla (ändra sumbit till keypress isf)
     e.preventDefault();
-
+    //if (Event.key === "Enter") { test
     let theSearchText: HTMLInputElement = document.getElementById(
       "searchText"
     ) as HTMLInputElement;
@@ -15,8 +15,9 @@ import { movieSearch } from "./services/movieService";
     let movies: IMovie[] = await movieSearch(searchText);
     createHTML(movies);
   }
+  // } test
 );
-
+//const hej = () => {} funktion!!!
 const createHTML = (movies: IMovie[]) => {
   let container = document.getElementById("searchResult") as HTMLDivElement;
   container.className = "container";
