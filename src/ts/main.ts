@@ -1,23 +1,23 @@
 import { IMovie } from "./models/IMovie";
 import { movieSearch } from "./services/movieService";
 
-(document.getElementById("searchForm") as HTMLFormElement).addEventListener(
-  "submit",
+(document.getElementById("searchText") as HTMLFormElement).addEventListener(
+  "input",
   async (e: Event) => {
     //I min klickhändelse när jag submittar så anropas en asyncfunktion. e är ett inbyggt objekt som har alla (ändra sumbit till keypress isf)
-    e.preventDefault();
-    //if (Event.key === "Enter") { test
+    //e.preventDefault(); // tar bort för att den ska sökaigen efter varje tangent. hade behövts ifall jag hade submit eller keypress tex.
+
     let theSearchText: HTMLInputElement = document.getElementById(
       "searchText"
     ) as HTMLInputElement;
     let searchText: string = theSearchText.value;
-
-    let movies: IMovie[] = await movieSearch(searchText);
-    createHTML(movies);
+    if (searchText.length > 2) {
+      let movies: IMovie[] = await movieSearch(searchText);
+      createHTML(movies);
+    }
   }
-  // } test
 );
-//const hej = () => {} funktion!!!
+
 const createHTML = (movies: IMovie[]) => {
   let container = document.getElementById("searchResult") as HTMLDivElement;
   container.className = "container";
